@@ -1,6 +1,7 @@
 import datetime
 import numpy as np
 from decimal import Decimal
+import sys
 
 def date_to_mill(year, month, day, hour, mit):
     epoch = datetime.datetime.utcfromtimestamp(0)
@@ -17,7 +18,7 @@ def date_to_nano(year, month, day, hour, mit):
     return Decimal((date - epoch).total_seconds() * 1000000000)
 
 def mill_to_date(mill):
-    return datetime.datetime.fromtimestamp(mill/1000)
+    return datetime.datetime.fromtimestamp(float(sys.argv[1])/1000).strftime('%Y-%m-%d %H:%M:%S.%f')
 
 def nano_to_date(nano):
     return datetime.datetime.fromtimestamp(nano/1000000000)
