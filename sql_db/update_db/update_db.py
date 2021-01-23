@@ -1,9 +1,9 @@
-from google_api.google_api_functions.service.gfit_service import *
+from google_api.service.gfit_service import *
 from sql_db.sql_db_functions.sql_engine_conector.sql_engine_conector import *
-from google_api.google_api_functions.get_sessions.get_sessions import *
+from google_api.get_sessions.get_sessions import *
 from sql_db.sql_db_functions.workout_uploader.workout_uploader import workout_uploader
 from sql_db.sql_db_functions.workout_dates.workout_dates import *
-from google_api.google_api_functions.get_data.get_data import get_data
+from google_api.get_data.get_data import get_data
 from sql_db.sql_db_functions.data_uploader.data_uploader import *
 
 # Start Google Fit API service
