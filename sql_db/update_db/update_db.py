@@ -34,12 +34,19 @@ def heart_rate_update(id_):
     start_date, end_date = workout_dates(sql_conn, id_)
 
     # Getting a dataframe with the heart rates of the given workout
-    dataSourceId = ['raw:com.google.heart_rate.bpm:com.xiaomi.hm.health:']
+    dataSourceId = 'raw:com.google.heart_rate.bpm:com.xiaomi.hm.health:'
     hr_df = get_data(gfit_service, dataSourceId, start_date, end_date)
 
-    # Upload data to the databases
+    # Upload data to the databases: if there is any heart rate data to upload, save the id of the workout, 
+    # in order to get also the miscellaneous data
+
     if hr_df.shape[0] >= 20:
         heart_data_uploader(sql_conn, hr_df, id_)
+        
+        return id_
+
+    else:
+        return None
 
 def misc_data_update(id_):
     # Getting start and end dates of the given workout

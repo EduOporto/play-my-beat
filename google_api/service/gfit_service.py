@@ -7,7 +7,7 @@ from google.auth.transport.requests import Request
  
  
 def create_fit_service():
-    client_secret_file = 'google_api/google_api_functions/service/client_secrets.json'
+    client_secret_file = 'google_api/service/client_secrets.json'
     scopes = ['https://www.googleapis.com/auth/fitness.heart_rate.read',
               'https://www.googleapis.com/auth/fitness.heart_rate.write', 
               'https://www.googleapis.com/auth/fitness.activity.read',
