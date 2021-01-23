@@ -14,12 +14,16 @@ def workout_uploader(gfit_workouts, db_workouts, sql_conn):
             pass
         else:
             runs_to_db += 1
+            
             start_date = row['startDate'].to_pydatetime()
+            start_date_nano = row['startDate_nano']
+            
             end_date = row['endDate'].to_pydatetime()
+            end_date_nano = row['endDate_nano']
 
             # Insert the workout on the DB
-            insert_query = f"""INSERT INTO play_my_beat.runs(start_date, end_date)
-                            VALUES ('{start_date}', '{end_date}')"""
+            insert_query = f"""INSERT INTO play_my_beat.runs(start_date, start_date_nano, end_date, end_date_nano)
+                            VALUES ('{start_date}', '{start_date_nano}', '{end_date}', '{end_date_nano}')"""
             
             sql_conn.execute(insert_query)
 

@@ -19,5 +19,9 @@ def get_data(gfit_service, dataSourceId, startDate, endDate):
 
         return df
     
-    #else:
+    elif 'step_count' in dataSourceId:
+        return dataset['point'][0]['value'][0]['intVal']
+
+    else:
+        return dataset['point'][0]['value'][0]['fpVal']
 

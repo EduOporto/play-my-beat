@@ -7,11 +7,8 @@ def workout_dates(sql_conn, id_):
                         WHERE run_id = {id_}"""
     exc_query = pd.read_sql(sql=session_query, con=sql_conn)
     
-    start_date = exc_query.start_date[0]
-    end_date = exc_query.end_date[0]
-
-    # Transform dates to nano, in order to make the query on Google Fit API
-    start_date_nano = date_to_nano(start_date.year, start_date.month, start_date.day, start_date.hour, start_date.minute)
-    end_date_nano = date_to_nano(end_date.year, end_date.month, end_date.day, end_date.hour, end_date.minute)
+    # Get dates in nano, in order to make the query on Google Fit API
+    start_date_nano = exc_query.start_date_nano[0]
+    end_date_nano = exc_query.end_date_nano[0]
 
     return start_date_nano, end_date_nano
