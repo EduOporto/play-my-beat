@@ -1,4 +1,8 @@
 *.pyc
+*.ipynb_checkpoints
+*.cache
 google_api/service/client_secrets.json
 sql_db/sql_db_functions/sql_engine_conector/.env
 token_fitness_v1.pickle
+.env
+main.ipynb
