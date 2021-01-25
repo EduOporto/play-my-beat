@@ -24,7 +24,8 @@ def session_update(days):
     registred_runs
 
     # Check if the workouts registred on Google Fit have been already saved on the DB
-    # If not, this function will upload the workout and return 
+    # If not, this function will upload the workout and return a list with the IDs of 
+    # each of the new uploaded workouts
     new_wkouts_id = workout_uploader(mi_fit_running, registred_runs, sql_conn)
 
     return new_wkouts_id
