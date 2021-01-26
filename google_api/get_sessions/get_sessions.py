@@ -1,6 +1,7 @@
 from google_api.google_api_functions.days_ago_now.days_ago_now import *
 from google_api.google_api_functions.date_format.date_format import *
 from google_api.google_api_functions.activityTypes.activityTypes_df import *
+from google_api.google_api_functions.activity_merger.activity_merger import *
 import pandas as pd
 
 def get_sessions(service, activityType, days):
@@ -21,9 +22,12 @@ def get_sessions(service, activityType, days):
                                 'packName': [e['application']['packageName'] for e in sess_req]})
 
     # Get all the sessions which activityType is Running and have been registred by the Mi Fit APP
-    req_sessions = sessions_df[(sessions_df.activityType == activityType) &
-                                (sessions_df.packName == 'com.xiaomi.hm.health')].sort_values('startDate').reset_index(drop=True)
+    req_sessions = sessions_df[(sessions_df.activityType == activityType) & 
+                               ((sessions_df.packName == 'com.huami.watch.hmwatchmanager') | 
+                               (sessions_df.packName == 'com.xiaomi.hm.health'))].sort_values('startDate')
 
-    return req_sessions
+    sessions_merged = activity_merger(req_sessions)
+
+    return sessions_merged
 
     

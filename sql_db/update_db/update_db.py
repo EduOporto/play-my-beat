@@ -35,7 +35,8 @@ def heart_rate_update(id_):
     start_date, end_date = workout_dates(sql_conn, id_)
 
     # Getting a dataframe with the heart rates of the given workout
-    dataSourceId = 'raw:com.google.heart_rate.bpm:com.xiaomi.hm.health:'
+    # dataSourceId = 'raw:com.google.heart_rate.bpm:com.xiaomi.hm.health:'
+    dataSourceId = 'raw:com.google.heart_rate.bpm:com.huami.watch.hmwatchmanager:GoogleFitSyncHelper - heartrate'
     hr_df = get_data(gfit_service, dataSourceId, start_date, end_date)
 
     # Upload data to the databases: if there is any heart rate data to upload, save the id of the workout, 
