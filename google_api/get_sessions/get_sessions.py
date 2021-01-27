@@ -24,10 +24,8 @@ def get_sessions(service, activityType, days):
     # Get all the sessions which activityType is Running and have been registred by the Mi Fit APP
     req_sessions = sessions_df[(sessions_df.activityType == activityType) & 
                                ((sessions_df.packName == 'com.huami.watch.hmwatchmanager') | 
-                               (sessions_df.packName == 'com.xiaomi.hm.health'))].sort_values('startDate')
+                               (sessions_df.packName == 'com.xiaomi.hm.health'))].sort_values('startDate').reset_index(drop=True)
 
     sessions_merged = activity_merger(req_sessions)
 
     return sessions_merged
-
-    
