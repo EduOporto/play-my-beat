@@ -14,3 +14,4 @@ def update_db():
 # Call to create a playlist sorted according to the predicted heart rate behaviour
 # get_playlist(playlist_uri, prediction)
 
+update_db()

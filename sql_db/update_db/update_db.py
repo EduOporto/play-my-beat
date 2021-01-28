@@ -36,7 +36,7 @@ def heart_rate_update(id_):
 
     # Getting a dataframe with the heart rates of the given workout
     # dataSourceId = 'raw:com.google.heart_rate.bpm:com.xiaomi.hm.health:'
-    dataSourceId = 'raw:com.google.heart_rate.bpm:com.huami.watch.hmwatchmanager:GoogleFitSyncHelper - heartrate'
+    dataSourceId = 'derived:com.google.heart_rate.bpm:com.google.android.gms:merge_heart_rate_bpm'
     hr_df = get_data(gfit_service, dataSourceId, start_date, end_date)
 
     # Upload data to the databases: if there is any heart rate data to upload, save the id of the workout, 
@@ -55,9 +55,9 @@ def misc_data_update(id_):
     start_date, end_date = workout_dates(sql_conn, id_)
 
     # Getting the values for steps, distance, and calories of a given workout id
-    distance = get_data(gfit_service, 'raw:com.google.distance.delta:com.xiaomi.hm.health:', start_date, end_date)
-    steps = get_data(gfit_service, 'raw:com.google.step_count.delta:com.xiaomi.hm.health:', start_date, end_date)
-    calories = get_data(gfit_service, 'raw:com.google.calories.expended:com.xiaomi.hm.health:', start_date, end_date)
+    distance = get_data(gfit_service, 'derived:com.google.distance.delta:com.google.android.gms:merge_distance_delta', start_date, end_date)
+    steps = get_data(gfit_service, 'derived:com.google.step_count.delta:com.google.android.gms:merge_step_deltas', start_date, end_date)
+    calories = get_data(gfit_service, 'derived:com.google.calories.expended:com.google.android.gms:merge_calories_expended', start_date, end_date)
 
     data = [distance, steps, calories]
 
