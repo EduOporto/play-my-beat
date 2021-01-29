@@ -2,6 +2,7 @@
 *.ipynb_checkpoints
 *.cache
 *.ipynb
+*.csv
 google_api/service/client_secrets.json
 sql_db/sql_db_functions/sql_engine_conector/.env
 token_fitness_v1.pickle

@@ -2,13 +2,12 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 import itertools
 import pandas as pd
 
-def grid_search(df):
-    n_obs_perwork = df['1970-01-01'].shape[0]
+def grid_search(df, min_obs):
     y = df.bpm
 
     p = d = q = range(0, 2)
     pdq = list(itertools.product(p, d, q))
-    seasonal_pdq = [(x[0], x[1], x[2], n_obs_perwork) for x in list(itertools.product(p, d, q))]
+    seasonal_pdq = [(x[0], x[1], x[2], min_obs) for x in list(itertools.product(p, d, q))]
 
     results_dict = {'AIC': [], 'param': [], 'param_seas': []}
 
