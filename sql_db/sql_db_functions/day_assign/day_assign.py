@@ -23,9 +23,8 @@ def day_assign(dframe):
     dframe.run_min = dframe.run_id + dframe.run_min
 
     # Set run_min as index and drop it as a column
-    dframe = dframe[['run_min', 'bpm']]
     dframe.sort_values(['run_min'], inplace=True)
     dframe.index = pd.to_datetime(dframe.run_min.astype(np.int64))
     dframe.drop(['run_min'], axis=1, inplace=True)
     
-    return dframe
+    return dframe[['bpm']]
