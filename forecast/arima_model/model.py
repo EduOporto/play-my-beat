@@ -2,7 +2,7 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 import matplotlib.pyplot as plt
 import pandas as pd
 
-def get_prediction(df, order, seasonal_order):
+def model(df, order, seasonal_order):
     # Get the latest date of the dataframe
     latest_date = df.index[-1].date()
     

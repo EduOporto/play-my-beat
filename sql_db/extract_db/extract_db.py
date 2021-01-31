@@ -13,6 +13,14 @@ def heart_rate_extract():
     # Sort by run_id
     heart_rates.sort_values(['run_id'], inplace=True)
 
+    # If there are more than 10 workouts registred, select the last 10; otherwise, get all
+    n_workouts = heart_rates.run_id.value_counts().index.sort_values()
+
+    if len(n_workouts) > 10:
+        heart_rates = heart_rates[heart_rates.run_id.isin(n_workouts[-10:])]
+    else:
+        pass
+
     # Get the minimum number of registers available
     min_regs = min(heart_rates.run_id.value_counts().to_list())
 
