@@ -7,11 +7,12 @@ sql_conn = engine_connector()
 
 def heart_rate_extract():
     # Get the heart rates as dataframe
-    query = """SELECT run_id, run_min, bpm FROM play_my_beat.heart_rate"""
-    heart_rates = pd.read_sql(sql=query, con=sql_conn)
+    query = """SELECT hr.run_id, CAST(r.start_date AS DATE) AS date, MINUTE(hr.run_min) AS min, hr.bpm 
+                FROM play_my_beat.heart_rate AS hr 
+                LEFT JOIN play_my_beat.runs AS r ON hr.run_id = r.run_id;
+            """
 
-    # Sort by run_id
-    heart_rates.sort_values(['run_id'], inplace=True)
+    heart_rates = pd.read_sql(sql=query, con=sql_conn)
 
     # If there are more than 10 workouts registred, select the last 10; otherwise, get all
     n_workouts = heart_rates.run_id.value_counts().index.sort_values()
@@ -21,11 +22,5 @@ def heart_rate_extract():
     else:
         pass
 
-    # Get the minimum number of registers available
-    min_regs = min(heart_rates.run_id.value_counts().to_list())
-
-    # Modify the run_min column, so each of the runs have different timedelta days 
-    heart_rates_day = day_assign(heart_rates)
-
-    return heart_rates_day, min_regs
+    return heart_rates
 
