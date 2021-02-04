@@ -1,6 +1,5 @@
 from sql_db.sql_engine_conector.sql_engine_conector import *
 import pandas as pd
-from sql_db.sql_db_functions.day_assign.day_assign import *
 
 # Start SQLAlchemy service
 sql_conn = engine_connector()
