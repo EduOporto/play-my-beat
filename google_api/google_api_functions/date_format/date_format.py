@@ -18,7 +18,13 @@ def date_to_nano(year, month, day, hour, mit):
     return Decimal((date - epoch).total_seconds() * 1000000000)
 
 def mill_to_date(mill):
-    return datetime.datetime.fromtimestamp(float(mill/1000))
+    raw_date = datetime.datetime.fromtimestamp(float(mill/1000))
+    date_no_micro = datetime.datetime(raw_date.year, raw_date.month, raw_date.day, raw_date.hour, raw_date.minute, raw_date.second)
+
+    if raw_date.microsecond > 500000:
+        return date_no_micro + datetime.timedelta(seconds=1)
+    else:
+        return date_no_micro
 
 def nano_to_date(nano):
     return datetime.datetime.fromtimestamp(nano/1000000000)

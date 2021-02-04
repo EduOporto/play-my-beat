@@ -65,7 +65,20 @@ def misc_data_update(id_):
     misc_data_uploader(sql_conn, data, id_)
 
     
+def update_db(days_to_check):
+    # Check for new sessions, if there is any the function will return a list with the IDs of the workouts 
+    # uploaded; otherwise return an empy list
+    new_sessions = session_update(days_to_check)
 
+    # Check if there are new workouts uploaded
+    if len(new_sessions) > 0:
+        # If so, iterate through the IDs
+        for session_id in new_sessions:
+            # Update the heart rates of each of the workouts
+            hrates = heart_rate_update(session_id)
+            # Update the rest of the data
+            if hrates != None:
+                misc_data_update(hrates)
     
 
     
