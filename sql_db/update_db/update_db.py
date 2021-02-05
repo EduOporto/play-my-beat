@@ -5,6 +5,7 @@ from sql_db.sql_db_functions.workout_uploader.workout_uploader import workout_up
 from sql_db.sql_db_functions.workout_dates.workout_dates import *
 from google_api.get_data.get_data import get_data
 from sql_db.sql_db_functions.data_uploader.data_uploader import *
+import streamlit as st
 
 # Start Google Fit API service
 gfit_service = create_fit_service()
@@ -26,9 +27,9 @@ def session_update(days):
     # Check if the workouts registred on Google Fit have been already saved on the DB
     # If not, this function will upload the workout and return a list with the IDs of 
     # each of the new uploaded workouts
-    new_wkouts_id = workout_uploader(mi_fit_running, registred_runs, sql_conn)
+    new_wkouts_id, message = workout_uploader(mi_fit_running, registred_runs, sql_conn)
 
-    return new_wkouts_id
+    return new_wkouts_id, message
 
 def heart_rate_update(id_):
     # Getting start and end dates of the given workout
@@ -43,12 +44,12 @@ def heart_rate_update(id_):
     # in order to get also the miscellaneous data
 
     if hr_df.shape[0] >= 20:
-        heart_data_uploader(sql_conn, hr_df, id_)
+        message = heart_data_uploader(sql_conn, hr_df, id_)
         
-        return id_
+        return id_, message
 
     else:
-        return None
+        return None, 'Not enough data to update'
 
 def misc_data_update(id_):
     # Getting start and end dates of the given workout
@@ -62,25 +63,9 @@ def misc_data_update(id_):
     data = [distance, steps, calories]
 
     # Upload to the databases
-    misc_data_uploader(sql_conn, data, id_)
+    message = misc_data_uploader(sql_conn, data, id_)
 
-    
-def update_db(days_to_check):
-    # Check for new sessions, if there is any the function will return a list with the IDs of the workouts 
-    # uploaded; otherwise return an empy list
-    new_sessions = session_update(days_to_check)
-
-    # Check if there are new workouts uploaded
-    if len(new_sessions) > 0:
-        # If so, iterate through the IDs
-        for session_id in new_sessions:
-            # Update the heart rates of each of the workouts
-            hrates = heart_rate_update(session_id)
-            # Update the rest of the data
-            if hrates != None:
-                misc_data_update(hrates)
-    
-
+    return message
     
 
 

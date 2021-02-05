@@ -39,10 +39,10 @@ def workout_uploader(gfit_workouts, db_workouts, sql_conn):
             updated_wkouts.append(id_)
 
     if runs_to_db == 0:
-        print('\nThere was no new workouts to be added to the database')
+        message = 'There was no new workouts to be added to the database'
     elif runs_to_db == 1:
-        print('\nA new workout has been added to the database')
+        message = 'A new workout has been added to the database'
     else:
-        print(f'\n{runs_to_db} new workouts have been added to the database')
+        message = f'{runs_to_db} new workouts have been added to the database'
 
-    return updated_wkouts
+    return updated_wkouts, message

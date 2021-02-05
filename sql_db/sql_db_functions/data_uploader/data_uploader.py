@@ -10,7 +10,7 @@ def heart_data_uploader(sql_conn, dframe, id_):
         
         sql_conn.execute(insert_query)
     
-    print(f"\nHeart data for workout {id_} succesfully added to the database")
+    return f"Heart data for workout {id_} succesfully added to the database"
 
 def misc_data_uploader(sql_conn, data, id_):
 
@@ -19,4 +19,4 @@ def misc_data_uploader(sql_conn, data, id_):
 
     sql_conn.execute(insert_query)
 
-    print(f"\nDistance, steps and calories for workout {id_} succesfully added to the database")
+    return f"Distance, steps and calories for workout {id_} succesfully added to the database"
