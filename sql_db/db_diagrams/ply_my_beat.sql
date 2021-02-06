@@ -82,7 +82,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `play_my_beat`.`users` (
   user_id INT NOT NULL AUTO_INCREMENT,
   user_name VARCHAR NOT NULL,
-  user_pass VARCHAR NOT NULL)
+  user_pass VARCHAR NOT NULL,
+  PRIMARY KEY (user_id));
 ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
