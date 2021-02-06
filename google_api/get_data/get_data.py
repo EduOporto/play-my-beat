@@ -1,4 +1,4 @@
-from google_api.google_api_functions.date_format.date_format import nano_to_date, date_to_periods
+from google_api.google_api_functions.date_format import *
 import pandas as pd
 
 def get_data(gfit_service, dataSourceId, startDate, endDate):

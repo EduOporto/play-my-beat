@@ -1,7 +1,7 @@
-from google_api.google_api_functions.days_ago_now.days_ago_now import *
-from google_api.google_api_functions.date_format.date_format import *
-from google_api.google_api_functions.activityTypes.activityTypes_df import *
-from google_api.google_api_functions.activity_merger.activity_merger import *
+from google_api.google_api_functions.days_ago_now import *
+from google_api.google_api_functions.date_format import *
+from google_api.google_api_functions.activityTypes_df import *
+from google_api.google_api_functions.activity_merger import *
 import pandas as pd
 
 def get_sessions(service, activityType, days):

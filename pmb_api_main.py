@@ -2,10 +2,8 @@ import streamlit as st
 
 from pmb_api.update_wk import update_wk
 from pmb_api.show_last_wk import show_last_wk
-
-from spotify_api.pl_builder.get_playlist import *
-from forecast.k_nearest_n.get_prediction import *
-
+from pmb_api.get_prediction import get_prediction
+from pmb_api.create_playlist import create_playlist
 
 radio = st.sidebar.radio('Options', ['Home', 'User Login', 'Update Workouts', 'Show last workouts data', 'Get Prediction', 'Create Playlist'])
 
@@ -26,8 +24,9 @@ elif radio == 'Show last workouts data':
 
 elif radio == 'Get Prediction':
     st.title('Get Prediction')
-    # prediction = get_prediction()
+    fig, prediction = get_prediction(st)
+    st.pyplot(fig)
 
 elif radio == 'Create Playlist':
     st.title('Create Playlist')
-    # get_playlist(playlist_uri, prediction)
+    create_playlist(st)

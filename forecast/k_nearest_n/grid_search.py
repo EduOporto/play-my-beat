@@ -4,16 +4,15 @@ from sklearn.model_selection import GridSearchCV
 import pandas as pd
 import numpy as np
 
-def grid_search(X, y, max_neighbors, max_min_predict):
+def grid_search(X, y, max_min_predict):
 
     # Set range of parameters
-    parameters = {'n_neighbors': np.arange(1,max_neighbors+1),
-              'weights': ['uniform', 'distance'],
+    parameters = {'weights': ['uniform', 'distance'],
               'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
-              'leaf_size': np.arange(10,100,10)}
+              'leaf_size': np.arange(10,70,10)}
 
     # Grid Search and model fitting
-    kNeigh = KNeighborsRegressor()
+    kNeigh = KNeighborsRegressor(n_neighbors=4)
 
     grid_kNeigh = GridSearchCV(kNeigh, parameters)
     grid_kNeigh.fit(X, y)

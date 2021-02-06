@@ -1,11 +1,16 @@
+# Google Fit API libraries
 from google_api.service.gfit_service import *
-from sql_db.sql_engine_conector.sql_engine_conector import *
 from google_api.get_sessions.get_sessions import *
-from sql_db.sql_db_functions.workout_uploader.workout_uploader import workout_uploader
-from sql_db.sql_db_functions.workout_dates.workout_dates import *
 from google_api.get_data.get_data import get_data
-from sql_db.sql_db_functions.data_uploader.data_uploader import *
-import streamlit as st
+
+# SQL Database libraries
+from sql_db.sql_engine_conector.sql_engine_conector import *
+from sql_db.sql_db_functions.workout_uploader import workout_uploader
+from sql_db.sql_db_functions.workout_dates import *
+from sql_db.sql_db_functions.data_uploader import *
+
+# Forecast libraries
+from forecast.k_nearest_n.get_prediction import get_prediction
 
 # Start Google Fit API service
 gfit_service = create_fit_service()
@@ -67,8 +72,17 @@ def misc_data_update(id_):
 
     return message
     
+def prediction_update():
+    # Get a prediction
+    prediction = get_prediction()
 
+    # Get the actual date
+    actual_date = datetime.datetime.today().strftime('%Y-%m-%d')
 
+    # Upload to the databases
+    message = prediction_uploader(sql_conn, prediction, actual_date)
+
+    return prediction, message
     
 
 

@@ -24,8 +24,8 @@ def playlist_sorter(run_intervals, playlist_df):
         for time, ran in zip(run_intervals.iterrows(), lenght_range_box):
             
             # Building the interval
-            interval = pd.Interval(left=time[1]['predicted_mean']-ranger,
-                                   right=time[1]['predicted_mean']+ranger,
+            interval = pd.Interval(left=time[1]['pred_min']-ranger,
+                                   right=time[1]['pred_min']+ranger,
                                    closed='both')
             
             # List of the songs that fit for the BPM interval of the time iterated

@@ -1,4 +1,4 @@
-from google_api.google_api_functions.date_format.date_format import *
+from google_api.google_api_functions.date_format import *
 import pandas as pd
 
 def workout_dates(sql_conn, id_):

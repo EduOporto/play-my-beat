@@ -15,6 +15,6 @@ def get_prediction():
     max_minute = X.max()['min']
 
     # Perform a grid search with the data available and return a prediction with the best parameters
-    prediction = grid_search(X, y, 15, max_minute)
+    prediction = grid_search(X, y, max_minute)
 
     return prediction

@@ -23,3 +23,13 @@ def heart_rate_extract():
 
     return heart_rates
 
+def prediction_extract():
+    # Get the current prediction
+    query = """SELECT * FROM play_my_beat.last_prediction"""
+    prediction = pd.read_sql(sql=query, con=sql_conn)
+    
+    # Get the date of the current prediction
+    prediction_date = prediction.pred_date[0]
+
+    return prediction, prediction_date
+
