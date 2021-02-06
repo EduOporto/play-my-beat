@@ -10,7 +10,7 @@ from sql_db.sql_db_functions.workout_dates import *
 from sql_db.sql_db_functions.data_uploader import *
 
 # Forecast libraries
-from forecast.k_nearest_n.get_prediction import get_prediction
+from prediction.k_nearest_n.get_prediction import get_prediction
 
 # Start Google Fit API service
 gfit_service = create_fit_service()

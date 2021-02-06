@@ -1,5 +1,5 @@
 from sql_db.extract_db.extract_db import *
-from forecast.k_nearest_n.grid_search import grid_search
+from prediction.k_nearest_n.grid_search import grid_search
 
 def get_prediction():
 

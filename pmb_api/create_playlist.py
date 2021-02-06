@@ -1,12 +1,17 @@
 from sql_db.extract_db.extract_db import prediction_extract
 from pmb_api.get_prediction import *
 from spotify_api.pl_builder.get_playlist import *
+from spotify_api.playlist_functions.link_validator import link_validator
 
 def create_playlist(st):
     # User input the Spotify Playlist (Implement defensive programming)
     playlist = st.text_input('Insert your Spotify playlist here')
     if playlist != '':
-        st.success('Gotcha!')
+        # Check if the given link is valid
+        if link_validator(playlist) == 'Yes':
+            st.success('Gotcha!')
+        else:
+            st.error("That's not a valid link!")
 
     # User chooses either to use the current prediction or perform a new one
     # Get the current prediction and its date
