@@ -1,9 +1,9 @@
 import streamlit as st
 
-from pmb_api.update_wk import update_wk
-from pmb_api.show_last_wk import show_last_wk
-from pmb_api.get_prediction import get_prediction
-from pmb_api.create_playlist import create_playlist
+from pmb_api.menu_functions.update_wk import update_wk
+from pmb_api.menu_functions.show_last_wk import show_last_wk
+from pmb_api.menu_functions.get_prediction import get_prediction
+from pmb_api.menu_functions.create_playlist import create_playlist
 
 def menu():
 

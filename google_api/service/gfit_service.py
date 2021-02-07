@@ -28,6 +28,7 @@ def create_fit_service():
  
     pickle_file = f'token_fitness_v1.pickle'
  
+    # Check if toekn_fitness_v1 exists
     if os.path.exists(pickle_file):
         with open(pickle_file, 'rb') as token:
             cred = pickle.load(token)        
