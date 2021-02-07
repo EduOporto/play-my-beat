@@ -22,7 +22,6 @@ def create_playlist(st):
     
     if sel_prediction == '':
         prediction = None
-        fig, ax = plt.subplots(figsize=(18,10))
     
     if sel_prediction == f'Use current ({current_pred_date})':
         st.success('Using current prediction')
@@ -31,11 +30,11 @@ def create_playlist(st):
         # Plotter
         fig, ax = plt.subplots(figsize=(18,10))
         ax = sns.lineplot(x='pred_min', y='pred_bpm', data=prediction)
+        st.pyplot(fig)
     
     elif sel_prediction == 'Make a new prediction':
         fig, prediction = get_prediction(st)
-    
-    st.pyplot(fig)
+        st.pyplot(fig)
     
     # Call to create the playlist
     if st.button('Create Playlist'):

@@ -4,7 +4,8 @@ import seaborn as sns
 
 def get_prediction(st):
     # Get new prediction
-    prediction, message = prediction_update()
+    with st.spinner('Building the model and the prediction...'):
+        prediction, message = prediction_update()
 
     # Plotter
     fig, ax = plt.subplots(figsize=(18,10))

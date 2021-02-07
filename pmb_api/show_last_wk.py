@@ -4,8 +4,10 @@ import seaborn as sns
 
 def show_last_wk(st):
     # Get the last 10 or less workouts and its dates
-    last_workouts = heart_rate_extract()
-    dates = sorted(list(last_workouts.date.value_counts().index))
+    with st.spinner('Getting the last workouts...'):
+        last_workouts = heart_rate_extract()
+        dates = sorted(list(last_workouts.date.value_counts().index))
+    st.success('Here is your data!')
 
     # Build the Streamlit multiselect with all the possible selections to filter the plot
     selector = st.multiselect('Dates', dates, dates)
