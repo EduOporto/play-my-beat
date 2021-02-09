@@ -1,7 +1,9 @@
 from sql_db.extract_db.extract_db import prediction_extract
-from pmb_api.get_prediction import *
+from pmb_api.menu_functions.get_prediction import get_prediction
 from spotify_api.pl_builder.get_playlist import *
 from spotify_api.playlist_functions.link_validator import link_validator
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 def create_playlist(st):
     # User input the Spotify Playlist (Implement defensive programming)
@@ -39,3 +41,5 @@ def create_playlist(st):
     # Call to create the playlist
     if st.button('Create Playlist'):
         get_playlist(playlist, prediction)
+
+        st.success('Playlist sorted and saved in your Spotify Library. Enjoy!')
